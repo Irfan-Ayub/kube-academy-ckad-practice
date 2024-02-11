@@ -1,0 +1,25 @@
+$ check-observability
+
+Question 1:
+liveness command correct? Passed
+liveness command argument correct? Passed
+liveness initial delay seconds correct? Passed
+readiness command correct? Passed
+readiness command argument correct? Passed
+readiness initial delay seconds correct? Passed
+Is Pod ready? Passed
+
+Question 2:
+is the readiness probe set? Passed
+is the pod ready? Passed
+
+Question 3:
+does log file contain output from printenv command? Passed
+The Pod 'myenv' should have been deleted. Passed
+
+Question 4:
+Has the Pod tatooine been fixed? Passed
+Is the Pod tatooine running? Passed
+
+Question 5:
+Is the Pod coruscant running? Passed

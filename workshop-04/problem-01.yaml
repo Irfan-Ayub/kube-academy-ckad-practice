@@ -1,0 +1,32 @@
+# Create a Pod named myredis with the image bitnami/redis. Define a liveness probe and readiness probe with an initial delay of 5 seconds and the command redis-cli PING.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: myredis
+  name: myredis
+spec:
+  containers:
+  - image: bitnami/redis
+    name: myredis
+    env:
+      - name: REDIS_PASSWORD
+        value: test
+    livenessProbe:
+      exec:
+        command:
+          - "redis-cli"
+          - "PING"
+      initialDelaySeconds: 5
+    readinessProbe:
+      exec:
+        command:
+          - "redis-cli"
+          - "PING"
+      initialDelaySeconds: 5
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

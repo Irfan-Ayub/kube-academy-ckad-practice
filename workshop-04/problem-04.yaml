@@ -1,0 +1,20 @@
+# Execute the following command, which will create a pod named tatooine.
+
+# kubectl apply -f observability/tatooine.yaml
+# The pod appears to be crashing. Fix it. The pod should be in running state. Recreate the pod if necessary.
+
+[~] $ cat observability/tatooine.yaml
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: tatooine
+  name: tatooine
+spec:
+  containers:
+  - name: tatooine
+    image: busybox
+    args:
+    - ssssleep  # this command is not correct
+    - infinity

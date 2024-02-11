@@ -1,0 +1,25 @@
+# Create a Pod named myenv that runs the command sh -c "printenv && sleep 1h". Use the image bitnami/kubectl.
+
+# Save the logs of the pod to myenv.log file.
+
+# Delete the pod.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: myenv
+  name: myenv
+spec:
+  containers:
+  - image: bitnami/kubectl
+    name: myenv
+    command:
+      - sh
+      - -c
+      - printenv && sleep 1h
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

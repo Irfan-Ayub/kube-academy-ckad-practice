@@ -1,0 +1,18 @@
+# Review the pod specification file observability/coruscant.yaml. 
+# We tried to create a pod using it, but it didn't work. Fix the spec file and create a pod using the spec file.
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: coruscant
+  name: coruscant
+spec:
+  containers:
+  - name: coruscant
+    image: busybox
+    args:
+    - sleep
+    - infinity
+  serviceAccountName: non-default-sa #this sa is not preset change this to default
