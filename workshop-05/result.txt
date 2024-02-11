@@ -1,0 +1,18 @@
+[~] $ check-pod-design
+
+Question 1:
+Deployment hoth uses apache:2.4.46 image? Passed
+Deployment hoth has 2 running pods? Passed
+
+Question 2:
+Deployment yavin is rolled back? Passed
+File ~/yavin.json contains deployment spec in JSON? Passed
+
+Question 3:
+HPA naboo scales at 80% CPU? Passed
+HPA naboo has 2 minimum replicas? Passed
+HPA naboo has 5 maximum replicas? Passed
+
+Question 4:
+Cronjob bespin is scheduled for every 5 min? Passed
+Cronjob bespin is running with date command? Passed

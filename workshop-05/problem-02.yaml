@@ -1,0 +1,25 @@
+Setup
+Apply the deployment named yavin:
+
+k apply -f pod-design/yavin.yaml
+Wait for the rollout of the deployment to complete.
+
+k rollout status deploy yavin
+Rollout an update to your deployment:
+
+k apply -f pod-design/yavin-update.yaml
+Inspect the state of the new pods.
+
+k get pod -w
+There is a problem.
+
+Challenge
+Rollback the Deployment yavin so that the Pods are working again.
+
+Export yavin deployment spec in JSON to the file yavin.json
+
+ANSWER
+
+k rollout undo deploy yavin
+
+k get deploy yavin -o json > yavin.json

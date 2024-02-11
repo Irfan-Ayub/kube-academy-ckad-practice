@@ -1,0 +1,30 @@
+Create a Deployment named hoth with two (2) replicas of Pods with the image bitnami/apache. Be sure to use the version of this container image with the tag 2.4.46.
+
+
+[~] $ k create deploy hoth --replicas=2 --image=bitnami/apache:2.4.46 --dry-run=client -o yaml > hoth-deploy.yaml
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hoth
+  name: hoth
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hoth
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hoth
+    spec:
+      containers:
+      - image: bitnami/apache:2.4.46
+        name: apache
+        resources: {}
+status: {}

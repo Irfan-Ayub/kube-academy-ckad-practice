@@ -1,0 +1,45 @@
+Create a Cron job named bespin that runs the command date using the bitnami/kubectl image every 5 minutes (*/5 * * * *).
+
+
+k create cronjob bespin --image=bitnami/kubectl --schedule='*/5 * * * *' -- date
+
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  creationTimestamp: "2024-02-11T17:12:51Z"
+  generation: 1
+  name: bespin
+  namespace: kubeacademy-w05-s087
+  resourceVersion: "194307471"
+  uid: 6ad147e2-ab0b-4b0b-9315-eb2d86c68123
+spec:
+  concurrencyPolicy: Allow
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      name: bespin
+    spec:
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - command:
+            - date
+            image: bitnami/kubectl
+            imagePullPolicy: Always
+            name: bespin
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: OnFailure
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+  schedule: '*/5 * * * *'
+  successfulJobsHistoryLimit: 3
+  suspend: false
+status: {}
