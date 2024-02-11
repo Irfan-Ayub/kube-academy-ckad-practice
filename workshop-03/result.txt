@@ -1,0 +1,5 @@
+[~] $ check-multi-container-pods
+
+Question 1:
+Pod running 3 containers with correct images? Passed
+Shell pod is running sleep command? Passed

@@ -1,0 +1,26 @@
+# k run mp-hello --image=bitnami/nginx $DR | tee multi-pod.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: mp-hello
+  name: mp-hello
+spec:
+  containers:
+  - image: bitnami/nginx
+    name: nginx
+    resources: {}
+  - image: bitnami/kubectl
+    name: shell
+    command:
+      - "sleep"
+      - "infinity"
+    resources: {}
+  - image: bitnami/consul
+    name: consul
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
