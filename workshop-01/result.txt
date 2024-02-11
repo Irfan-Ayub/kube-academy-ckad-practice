@@ -1,0 +1,18 @@
+check-core-concepts
+
+Question 1:
+Resource definition kind is Namespace? Passed
+Resource definition for name is frontend? Passed
+
+Question 2:
+Session namespace has pod nginx? Passed
+Pod nginx is using image nginx? Passed
+
+Question 3:
+Pod hello is completed and not restarting? Passed
+Pod hello printed 'Hello World' Passed
+
+Question 4:
+Manifest mypodx.yaml has correct syntax? Passed
+Manifest mypodx.yaml uses redis image? Passed
+Manifest mypodx.yaml pod has name mypodx? Passed

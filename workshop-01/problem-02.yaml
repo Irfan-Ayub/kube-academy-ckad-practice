@@ -1,0 +1,22 @@
+#  Generate a pod manifest file mypodx.yaml (in your current working directory). Pod name should be mypodx with image redis. Make sure you only generate the pod manifest file, you do not have to create the pod.
+
+
+# COMMAND
+# k run mypodx --image=redis $DR | tee mypodx.yaml 
+
+# OUTPUT
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: mypodx
+  name: mypodx
+spec:
+  containers:
+  - image: redis
+    name: mypodx
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

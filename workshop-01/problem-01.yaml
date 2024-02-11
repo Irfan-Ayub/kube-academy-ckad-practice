@@ -1,0 +1,16 @@
+# Execute a dry-run command to create, in yaml format, 
+# the resource definition for a namespace named frontend. 
+# Write the yaml output to the file my-namespace.yaml.
+
+# Command to Run
+# k create ns frontend $DR | tee my-namespace.yaml
+
+# Output
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: frontend
+spec: {}
+status: {}

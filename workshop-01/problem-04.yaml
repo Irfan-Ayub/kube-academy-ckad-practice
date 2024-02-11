@@ -1,0 +1,25 @@
+# Create a Pod named nginx in the namespace kubeacademy-w01-s240-apps, using the image bitnami/nginx.
+
+# Command
+# k run nginx --image bitnami/nginx --namespace=kubeacademy-w01-s240-apps $DR | tee nginx_pod.yaml
+
+#OUTPUT
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx
+  name: nginx
+  namespace: kubeacademy-w01-s240-apps
+spec:
+  containers:
+  - image: bitnami/nginx
+    name: nginx
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+
+
+# k create -f nginx_pod.yaml
