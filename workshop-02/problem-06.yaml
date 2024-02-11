@@ -1,0 +1,28 @@
+# Create a service account named namaste.
+
+# Use the service account to create a Pod named yo-namaste with image bitnami/nginx.
+
+# k create sa namaste $DR | tee namaste-sa.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  creationTimestamp: null
+  name: namaste
+
+# k run yo-namaste --image bitnami/nginx $DR | tee yo-namaste-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: yo-namaste
+  name: yo-namaste
+spec:
+  serviceAccountName: namaste
+  containers:
+  - image: bitnami/nginx
+    name: yo-namaste
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

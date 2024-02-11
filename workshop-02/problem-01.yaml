@@ -1,0 +1,12 @@
+# Create a config map with the name my-config and value confa=exvalue.
+
+# k create cm my-config --from-literal=confa=exvalue $DR | tee my-config.yaml
+apiVersion: v1
+data:
+  confa: exvalue
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: my-config
+
+# k create -f my-config.yaml

@@ -1,0 +1,65 @@
+# Create a secret db-secret with value MYSQL_ROOT_PASSWORD=YoYoSecret and MYSQL_PASSWORD=XoXoPassword.
+
+# Create a configmap named db-config with value MYSQL_USER=k8s and MYSQL_DATABASE=newdb.
+
+# Create a pod named mydb with image bitnami/mysql and expose all values of db-secret and db-config as environment variables to the pod.
+
+# k create secret generic db-secret --from-literal=MYSQL_ROOT_PASSWORD=YoYoSecret --from-literal=MYSQL_PASSWORD=XoXoPassword $DR | tee db-secret.yaml
+apiVersion: v1
+data:
+  MYSQL_PASSWORD: WG9Yb1Bhc3N3b3Jk
+  MYSQL_ROOT_PASSWORD: WW9Zb1NlY3JldA==
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: db-secret
+
+
+# k create cm db-config --from-literal=MYSQL_USER=k8s --from-literal=MYSQL_DATABASE=newdb $DR |tee db-config.yaml
+apiVersion: v1
+data:
+  MYSQL_DATABASE: newdb
+  MYSQL_USER: k8s
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: db-config
+
+# k run mydb --image=bitnami/mysql $DR | tee db-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: mydb
+  name: mydb
+spec:
+  containers:
+  - image: bitnami/mysql
+    name: mydb
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: mydb
+  name: mydb
+spec:
+  containers:
+  - image: bitnami/mysql
+    name: mydb
+    envFrom:
+      - configMapRef:
+          name: db-config
+      - secretRef:
+          name: db-secret
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

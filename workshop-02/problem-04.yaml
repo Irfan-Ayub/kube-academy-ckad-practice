@@ -1,0 +1,23 @@
+# Create a Pod manifest file limited-pod.yaml with name limited-pod and image bitnami/kubectl. Set memory request at 100Mi and limit at 200Mi. You do not need to create the Po
+
+# k run limited-pod --image=bitnami/kubectl $DR > limited-pod.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: limited-pod
+  name: limited-pod
+spec:
+  containers:
+  - image: bitnami/kubectl
+    name: limited-pod
+    resources:
+      requests:
+        memory: "100Mi"
+      limits:
+        memory: "200Mi"
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

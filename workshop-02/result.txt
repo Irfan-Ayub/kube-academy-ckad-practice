@@ -1,0 +1,26 @@
+[~] $ check-configuration
+
+Question 1:
+Configmap my-config exists in session namespace? Passed
+Configmap my-config contains correct key-value? Passed
+
+Question 2:
+Environment variable contains correct value? Passed
+
+Question 3:
+Pod running with correct user? Passed
+Pod running with correct group? Passed
+
+Question 4:
+Pod in ~/limited-pod.yaml has correct memory requests? Passed
+Pod in ~/limited-pod.yaml has correct memory limits? Passed
+
+Question 5:
+Secrets from db-secret are exposed as env vars? Passed
+Secrets from db-secret are exposed as env vars? Passed
+Configmap from db-config are exposed as env vars? Passed
+Configmap from db-config are exposed as env vars? Passed
+
+Question 6:
+Service account namaste is created? Passed
+Pod yo-namaste uses namaste service account? Passed

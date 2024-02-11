@@ -1,0 +1,32 @@
+# A config map named al-conf has been created.
+
+# k get cm
+# Expose the value of al-user to a pod named al-pod as the environment variable name AL_USER. Use bitnami/redis as the image for the pod.
+
+# Note: To function, the bitnami/redis requires setting the environment variable named REDIS_PASSWORD
+
+# k run al-pod --image=bitnami/redis $DR > al-pod.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: al-pod
+  name: al-pod
+spec:
+  containers:
+  - image: bitnami/redis
+    name: al-pod
+    env:
+     - name: REDIS_PASSWORD
+       value: howdy
+     - name: AL_USER
+       valueFrom:
+         configMapKeyRef:
+           name: al-conf
+           key: al-user
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
