@@ -1,0 +1,24 @@
+Setup
+Apply the pod geonosis:
+
+k apply -f services-and-networking/geonosis-pod.yaml
+Apply the accompanying ClusterIP service by the same name:
+
+k apply -f services-and-networking/geonosis-svc.yaml
+Challenge
+Create a network policy geonosis-shield which allows only pods with the label empire=true to access the service.
+ Use appropriate labels.
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: geonosis-shield
+spec:
+  podSelector:
+    matchLabels:
+      sector: arkanis
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          empire: "true"
