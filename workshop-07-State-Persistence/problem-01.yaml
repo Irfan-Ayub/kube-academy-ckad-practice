@@ -1,0 +1,26 @@
+Create a Pod named vader with image bitnami/nginx. Mount a volume named vader-vol at /var/www/html, which should live as long as Pod lives.
+
+[~] $ k run vader --image=bitnami/nginx --dry-run=client -o yaml > vader-pod.yaml
+[~] $ vi vader-pod.yaml
+[~] $ cat vader-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: vader
+  name: vader
+spec:
+  volumes:
+    - name: vader-vol
+      emptyDir: {}
+  containers:
+  - image: bitnami/nginx
+    name: vader
+    resources: {}
+    volumeMounts:
+      - mountPath: /var/www/html
+        name: vader-vol
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

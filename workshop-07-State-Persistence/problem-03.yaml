@@ -1,0 +1,36 @@
+Create a ConfigMap named my-data with these two sets of key-value pairs: city: Paris, and pastry: Baba au rhum. Create a Pod named my-web-server using the image bitnami/nginx that mounts the ConfigMap as a volume at /etc/app-data (the volume name is of your choosing).
+
+
+[~] $ k create cm my-data --from-literal=city=Paris --from-literal='pastry=Baba au rhum' --dry-run=client -o yaml > cm.yaml
+[~] $ cat cm.yaml
+apiVersion: v1
+data:
+  city: Paris
+  pastry: Baba au rhum
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: my-data
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: my-web-server
+  name: my-web-server
+spec:
+  volumes:
+    - name: config-vol
+      configMap:
+        name: my-data
+  - image: bitnami/nginx
+    name: my-web-server
+    resources: {}
+    volumeMounts:
+    - name: config-vol
+      path: /etc/app-data
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

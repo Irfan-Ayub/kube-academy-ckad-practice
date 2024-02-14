@@ -1,0 +1,34 @@
+Create a pod dooku with two containers using the images bitnami/redis and bitnami/nginx. Create an emptyDir scratch volume named dooku-logs mounted at /var/log/dooku in both containers.
+
+Note: Be sure to review the hostPath and other volume types as you prepare for the exam.
+
+[~] $ cat dooku-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: pod
+  name: pod
+spec:
+  volumes:
+    - name: dooku-logs
+      emptyDir: {}
+  containers:
+  - env:
+    - name: REDIS_PASSWORD
+      value: howdy
+    image: bitnami/redis
+    name: redis
+    volumeMounts:
+      - name: dooku-logs
+        mountPath: /var/log/dooku
+  - name: nginx
+    image: bitnami/nginx
+    volumeMounts:
+      - name: dooku-logs
+        mountPath: /var/log/dooku
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
